@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchGroups } from '../redux/actions/groupsAction';
 
 class Contacts extends PureComponent {
   constructor(props) {
@@ -17,65 +20,8 @@ class Contacts extends PureComponent {
     this.setDetails = this.setDetails.bind(this);
   }
 
-  fakeGroups = [
-    {
-      groupId: 1,
-      name: 'Default',
-      contacts: [
-        {
-          contactId: 1,
-          name: 'Shaphil',
-          phone: '01911281911',
-          email: 'shaphil2025@gmail.com',
-          groupId: 1
-        },
-        {
-          contactId: 2,
-          name: 'Mahmud',
-          phone: '01678034104',
-          email: 'shaphil.mahmud@gmail.com',
-          groupId: 1
-        }
-      ]
-    },
-    {
-      groupId: 2,
-      name: 'Home',
-      contacts: [
-        {
-          contactId: 1,
-          name: 'Mamun',
-          phone: '01234567890',
-          email: 'mamun@gmail.com',
-          groupId: 2
-        },
-        {
-          contactId: 2,
-          name: 'Mahmud',
-          phone: '01678034104',
-          email: 'shaphil.mahmud@gmail.com',
-          groupId: 2
-        },
-        {
-          contactId: 3,
-          name: 'Maruf',
-          phone: '01676123456',
-          email: 'maruf@gmail.com',
-          groupId: 2
-        },
-        {
-          contactId: 4,
-          name: 'Mashruf',
-          phone: '01911456789',
-          email: 'mashruf@gmail.com',
-          groupId: 2
-        }
-      ]
-    }
-  ];
-
   componentDidMount() {
-    this.setState({ groups: this.fakeGroups });
+    this.props.fetchGroups();
   }
 
   setContacts(contacts) {
@@ -89,6 +35,8 @@ class Contacts extends PureComponent {
   render() {
     const spacingStyle = { marginTop: 10 };
     const detailsSpacing = { marginLeft: 15 };
+    const { groups } = this.props;
+
     return (
       <div className="container">
         <div className="jumbotron">
@@ -100,7 +48,7 @@ class Contacts extends PureComponent {
         <div className="row">
           <div className="col-sm">
             <ul className="list-group">
-              {this.state.groups.map(group => (
+              {groups.map(group => (
                 <li
                   key={group.groupId}
                   onClick={() => this.setContacts(group.contacts)}
@@ -136,4 +84,11 @@ class Contacts extends PureComponent {
   }
 }
 
-export default Contacts;
+const mapStateToProps = state => ({
+  groups: state.groupsReducer.groups
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchGroups }
+)(Contacts);
