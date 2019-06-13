@@ -16,8 +16,13 @@ class Contacts extends PureComponent {
         email: 'N/A'
       }
     };
+
     this.setContacts = this.setContacts.bind(this);
     this.setDetails = this.setDetails.bind(this);
+    this.editGroup = this.editGroup.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
+    this.editContact = this.editContact.bind(this);
+    this.deleteContact = this.deleteContact.bind(this);
   }
 
   componentDidMount() {
@@ -32,9 +37,26 @@ class Contacts extends PureComponent {
     this.setState({ contactDetails: details });
   }
 
+  editGroup(group) {
+    console.log('Editing group: ', group.name);
+  }
+
+  deleteGroup(group) {
+    console.log('Deleting group: ', group.name);
+  }
+
+  editContact(contact) {
+    console.log('Editing contact: ', contact.name);
+  }
+
+  deleteContact(contact) {
+    console.log('Deleting contact: ', contact.name);
+  }
+
   render() {
     const spacingStyle = { marginTop: 10 };
     const detailsSpacing = { marginLeft: 15 };
+    const deleteIconStyle = { marginLeft: 10 };
 
     const { groups } = this.props;
     const { contacts, contactDetails } = this.state;
@@ -57,6 +79,18 @@ class Contacts extends PureComponent {
                   className="list-group-item list-group-item-action"
                 >
                   {group.name}
+                  <span className="float-right" style={deleteIconStyle}>
+                    <i
+                      className="far fa-trash-alt"
+                      onClick={() => this.deleteGroup(group)}
+                    />
+                  </span>
+                  <span className="float-right">
+                    <i
+                      className="far fa-edit"
+                      onClick={() => this.editGroup(group)}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -70,6 +104,18 @@ class Contacts extends PureComponent {
                   className="list-group-item list-group-item-action"
                 >
                   {contact.name}
+                  <span className="float-right" style={deleteIconStyle}>
+                    <i
+                      className="far fa-trash-alt"
+                      onClick={() => this.deleteContact(contact)}
+                    />
+                  </span>
+                  <span className="float-right">
+                    <i
+                      className="far fa-edit"
+                      onClick={() => this.editContact(contact)}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
