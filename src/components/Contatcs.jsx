@@ -5,6 +5,7 @@ class Contacts extends PureComponent {
     super(props);
 
     this.state = {
+      groups: [],
       contacts: [],
       contactDetails: {
         name: 'N/A',
@@ -16,26 +17,66 @@ class Contacts extends PureComponent {
     this.setDetails = this.setDetails.bind(this);
   }
 
-  fakeGroup = {
-    groupId: 1,
-    name: 'Default',
-    contacts: [
-      {
-        contactId: 1,
-        name: 'Shaphil',
-        phone: '01911281911',
-        email: 'shaphil2025@gmail.com',
-        groupId: 1
-      },
-      {
-        contactId: 2,
-        name: 'Mahmud',
-        phone: '01678034104',
-        email: 'shaphil.mahmud@gmail.com',
-        groupId: 1
-      }
-    ]
-  };
+  fakeGroups = [
+    {
+      groupId: 1,
+      name: 'Default',
+      contacts: [
+        {
+          contactId: 1,
+          name: 'Shaphil',
+          phone: '01911281911',
+          email: 'shaphil2025@gmail.com',
+          groupId: 1
+        },
+        {
+          contactId: 2,
+          name: 'Mahmud',
+          phone: '01678034104',
+          email: 'shaphil.mahmud@gmail.com',
+          groupId: 1
+        }
+      ]
+    },
+    {
+      groupId: 2,
+      name: 'Home',
+      contacts: [
+        {
+          contactId: 1,
+          name: 'Mamun',
+          phone: '01234567890',
+          email: 'mamun@gmail.com',
+          groupId: 2
+        },
+        {
+          contactId: 2,
+          name: 'Mahmud',
+          phone: '01678034104',
+          email: 'shaphil.mahmud@gmail.com',
+          groupId: 2
+        },
+        {
+          contactId: 3,
+          name: 'Maruf',
+          phone: '01676123456',
+          email: 'maruf@gmail.com',
+          groupId: 2
+        },
+        {
+          contactId: 4,
+          name: 'Mashruf',
+          phone: '01911456789',
+          email: 'mashruf@gmail.com',
+          groupId: 2
+        }
+      ]
+    }
+  ];
+
+  componentDidMount() {
+    this.setState({ groups: this.fakeGroups });
+  }
 
   setContacts(contacts) {
     this.setState({ contacts: contacts });
@@ -46,6 +87,8 @@ class Contacts extends PureComponent {
   }
 
   render() {
+    const spacingStyle = { marginTop: 10 };
+    const detailsSpacing = { marginLeft: 15 };
     return (
       <div className="container">
         <div className="jumbotron">
@@ -57,12 +100,15 @@ class Contacts extends PureComponent {
         <div className="row">
           <div className="col-sm">
             <ul className="list-group">
-              <li
-                onClick={() => this.setContacts(this.fakeGroup.contacts)}
-                className="list-group-item list-group-item-action"
-              >
-                {this.fakeGroup.name}
-              </li>
+              {this.state.groups.map(group => (
+                <li
+                  key={group.groupId}
+                  onClick={() => this.setContacts(group.contacts)}
+                  className="list-group-item list-group-item-action"
+                >
+                  {group.name}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="col-sm">
@@ -79,9 +125,10 @@ class Contacts extends PureComponent {
             </ul>
           </div>
           <div className="col-sm mx-auto border">
-            <p>{this.state.contactDetails.name}</p>
-            <p>{this.state.contactDetails.phone}</p>
-            <p>{this.state.contactDetails.email}</p>
+            <h3 style={spacingStyle}>Contact Details</h3>
+            <p style={detailsSpacing}>{this.state.contactDetails.name}</p>
+            <p style={detailsSpacing}>{this.state.contactDetails.phone}</p>
+            <p style={detailsSpacing}>{this.state.contactDetails.email}</p>
           </div>
         </div>
       </div>
