@@ -35,7 +35,9 @@ class Contacts extends PureComponent {
   render() {
     const spacingStyle = { marginTop: 10 };
     const detailsSpacing = { marginLeft: 15 };
+
     const { groups } = this.props;
+    const { contacts, contactDetails } = this.state;
 
     return (
       <div className="container">
@@ -61,7 +63,7 @@ class Contacts extends PureComponent {
           </div>
           <div className="col-sm">
             <ul className="list-group">
-              {this.state.contacts.map(contact => (
+              {contacts.map(contact => (
                 <li
                   key={contact.contactId}
                   onClick={() => this.setDetails(contact)}
@@ -74,9 +76,9 @@ class Contacts extends PureComponent {
           </div>
           <div className="col-sm mx-auto border">
             <h3 style={spacingStyle}>Contact Details</h3>
-            <p style={detailsSpacing}>{this.state.contactDetails.name}</p>
-            <p style={detailsSpacing}>{this.state.contactDetails.phone}</p>
-            <p style={detailsSpacing}>{this.state.contactDetails.email}</p>
+            <p style={detailsSpacing}>{contactDetails.name}</p>
+            <p style={detailsSpacing}>{contactDetails.phone}</p>
+            <p style={detailsSpacing}>{contactDetails.email}</p>
           </div>
         </div>
       </div>
