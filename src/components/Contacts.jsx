@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import './contacts.css';
+import AddNewGroupModal from './AddNewGroupModal';
+import AddNewContactModal from './AddNewContactModal';
 import { fetchGroups } from '../redux/actions/groupsAction';
 
 class Contacts extends PureComponent {
@@ -57,7 +59,7 @@ class Contacts extends PureComponent {
   render() {
     const detailsStyle = { marginLeft: 15, paddingTop: 10 };
     const deleteIconStyle = { marginLeft: 5 };
-    const addNewButtonStyle = { marginTop: 10 };
+    const addNewButtonStyle = { marginTop: 5 };
 
     const { groups } = this.props;
     const { contacts, contactDetails } = this.state;
@@ -77,10 +79,9 @@ class Contacts extends PureComponent {
                 <h3>Groups</h3>
               </div>
               <div className="col-sm-4">
-                <i
-                  className="far fa-plus-square float-right"
-                  style={addNewButtonStyle}
-                />
+                <span className="float-right" style={addNewButtonStyle}>
+                  <AddNewGroupModal />
+                </span>
               </div>
             </div>
             <ul className="list-group">
@@ -113,10 +114,9 @@ class Contacts extends PureComponent {
                 <h3>Contacts</h3>
               </div>
               <div className="col-sm-4">
-                <i
-                  className="far fa-plus-square float-right"
-                  style={addNewButtonStyle}
-                />
+                <span className="float-right" style={addNewButtonStyle}>
+                  <AddNewContactModal />
+                </span>
               </div>
             </div>
             <ul className="list-group">
