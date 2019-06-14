@@ -1,4 +1,4 @@
-import { ADD_GROUP, FETCH_GROUPS } from '../actions/groupsAction';
+import { ADD_GROUP, FETCH_GROUPS, UPDATE_GROUP } from '../actions/groupsAction';
 
 const initialState = {
   groups: []

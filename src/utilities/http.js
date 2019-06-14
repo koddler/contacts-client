@@ -48,7 +48,7 @@ export const _put = (url, dispatch, type, updatedData) => {
 // HTTP DELETE
 export const _delete = (url, dispatch, type) => {
   fetch(url, { method: 'DELETE' })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
       return dispatch({
         type: type,

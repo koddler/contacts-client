@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './contacts.css';
 import AddNewGroupModal from './AddNewGroupModal';
 import AddNewContactModal from './AddNewContactModal';
-import { fetchGroups } from '../redux/actions/groupsAction';
+import { fetchGroups, removeGroup } from '../redux/actions/groupsAction';
 
 class Contacts extends PureComponent {
   constructor(props) {
@@ -53,6 +53,7 @@ class Contacts extends PureComponent {
 
   deleteGroup(group) {
     console.log('Deleting group: ', group.name);
+    this.props.removeGroup(group.groupId);
   }
 
   editContact(contact) {
@@ -174,5 +175,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchGroups }
+  { fetchGroups, removeGroup }
 )(Contacts);
