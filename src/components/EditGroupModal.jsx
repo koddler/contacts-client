@@ -22,7 +22,10 @@ class EditGroupModal extends React.Component {
   }
 
   submit = values => {
-    let val = { ...values, groupId: this.props.group.groupId };
+    let val = {
+      name: values.name ? values.name : this.props.group.name,
+      groupId: this.props.group.groupId
+    };
     console.log(val);
     this.props.updateGroup(val);
   };
