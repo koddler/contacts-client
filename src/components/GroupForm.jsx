@@ -14,7 +14,9 @@ class GroupForm extends PureComponent {
             type="text"
             className="form-control"
             id="groupname"
-            placeholder="Group Name"
+            placeholder={
+              this.props.group ? this.props.group.name : 'Group Name'
+            }
           />
         </div>
         <button

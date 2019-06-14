@@ -13,6 +13,15 @@ export default (state = initialState, action) => {
     case FETCH_GROUPS:
       return { ...state, groups: action.payload };
 
+    case UPDATE_GROUP:
+      const updatedGroups = state.groups.map(group => {
+        if (group.groupId === action.payload.groupId) return action.payload;
+
+        return group;
+      });
+
+      return { ...state, groups: updatedGroups };
+
     default:
       return state;
   }

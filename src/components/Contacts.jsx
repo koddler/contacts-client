@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './contacts.css';
 import AddNewGroupModal from './AddNewGroupModal';
 import AddNewContactModal from './AddNewContactModal';
+import EditGroupModal from './EditGroupModal';
 import { fetchGroups, removeGroup } from '../redux/actions/groupsAction';
 import { removeContact } from '../redux/actions/contactsAction';
 
@@ -109,10 +110,7 @@ class Contacts extends PureComponent {
                     />
                   </span>
                   <span className="float-right">
-                    <i
-                      className="far fa-edit"
-                      onClick={() => this.editGroup(group)}
-                    />
+                    <EditGroupModal group={group} />
                   </span>
                 </li>
               ))}
@@ -148,10 +146,7 @@ class Contacts extends PureComponent {
                     />
                   </span>
                   <span className="float-right">
-                    <i
-                      className="far fa-edit"
-                      onClick={() => this.editContact(contact)}
-                    />
+                    {/* <EditGroupModal group={group} /> */}
                   </span>
                 </li>
               ))}
