@@ -45,9 +45,6 @@ class NewContactForm extends PureComponent {
           onClick={this.props.toggle}
         >
           Submit
-        </button>{' '}
-        <button className="btn btn-dark" onClick={this.props.toggle}>
-          Cancel
         </button>
       </form>
     );
