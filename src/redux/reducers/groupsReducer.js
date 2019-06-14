@@ -1,4 +1,4 @@
-import { FETCH_GROUPS } from '../actions/groupsAction';
+import { ADD_GROUP, FETCH_GROUPS } from '../actions/groupsAction';
 
 const initialState = {
   groups: []
@@ -6,6 +6,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ADD_GROUP:
+      const newGroups = [...state.groups, action.payload];
+      return { ...state, groups: newGroups };
+
     case FETCH_GROUPS:
       return { ...state, groups: action.payload };
 
