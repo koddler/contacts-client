@@ -1,7 +1,9 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { connect } from 'react-redux';
 
 import NewContactForm from './NewContactForm';
+import { addContact } from '../redux/actions/contactsAction';
 
 class AddNewContactModal extends React.Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class AddNewContactModal extends React.Component {
   submit = values => {
     let val = { ...values, groupId: this.props.group };
     console.log(val);
+    this.props.addContact(val);
   };
 
   render() {
@@ -43,4 +46,7 @@ class AddNewContactModal extends React.Component {
   }
 }
 
-export default AddNewContactModal;
+export default connect(
+  null,
+  { addContact }
+)(AddNewContactModal);
