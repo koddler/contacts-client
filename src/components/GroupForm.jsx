@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-class NewGroupForm extends PureComponent {
+class GroupForm extends PureComponent {
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -29,5 +29,5 @@ class NewGroupForm extends PureComponent {
   }
 }
 
-NewGroupForm = reduxForm({ form: 'new_group_form' })(NewGroupForm);
-export default NewGroupForm;
+GroupForm = reduxForm({ form: 'new_group_form' })(GroupForm);
+export default GroupForm;

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-class NewContactForm extends PureComponent {
+class ContactForm extends PureComponent {
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -51,5 +51,5 @@ class NewContactForm extends PureComponent {
   }
 }
 
-NewContactForm = reduxForm({ form: 'new_contact_form' })(NewContactForm);
-export default NewContactForm;
+ContactForm = reduxForm({ form: 'new_contact_form' })(ContactForm);
+export default ContactForm;

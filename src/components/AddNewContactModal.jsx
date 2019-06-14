@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import NewContactForm from './NewContactForm';
+import ContactForm from './ContactForm';
 import { addContact } from '../redux/actions/contactsAction';
 
 class AddNewContactModal extends React.Component {
@@ -38,7 +38,7 @@ class AddNewContactModal extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>Add new Contact</ModalHeader>
           <ModalBody>
-            <NewContactForm onSubmit={this.submit} toggle={this.toggle} />
+            <ContactForm onSubmit={this.submit} toggle={this.toggle} />
           </ModalBody>
         </Modal>
       </div>

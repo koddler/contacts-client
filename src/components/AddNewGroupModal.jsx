@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import NewGroupForm from './NewGroupForm';
+import GroupForm from './GroupForm';
 import { addGroup } from '../redux/actions/groupsAction';
 
 class AddNewGroupModal extends React.Component {
@@ -37,7 +37,7 @@ class AddNewGroupModal extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>Add new Group</ModalHeader>
           <ModalBody>
-            <NewGroupForm onSubmit={this.submit} toggle={this.toggle} />
+            <GroupForm onSubmit={this.submit} toggle={this.toggle} />
           </ModalBody>
         </Modal>
       </div>
