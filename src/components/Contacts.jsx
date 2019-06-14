@@ -17,7 +17,9 @@ class Contacts extends PureComponent {
         name: 'N/A',
         phone: 'N/A',
         email: 'N/A'
-      }
+      },
+      isGroupSelected: false,
+      selectedGroup: 0
     };
 
     this.setContacts = this.setContacts.bind(this);
@@ -32,8 +34,13 @@ class Contacts extends PureComponent {
     this.props.fetchGroups();
   }
 
-  setContacts(contacts) {
-    this.setState({ contacts: contacts });
+  setContacts(group) {
+    if (group.contacts != null) this.setState({ contacts: group.contacts });
+
+    this.setState({
+      isGroupSelected: true,
+      selectedGroup: group.groupId
+    });
   }
 
   setDetails(details) {
@@ -88,7 +95,7 @@ class Contacts extends PureComponent {
               {groups.map(group => (
                 <li
                   key={group.groupId}
-                  onClick={() => this.setContacts(group.contacts)}
+                  onClick={() => this.setContacts(group)}
                   className="list-group-item list-group-item-action"
                 >
                   {group.name}
@@ -115,7 +122,11 @@ class Contacts extends PureComponent {
               </div>
               <div className="col-sm-4">
                 <span className="float-right" style={addNewButtonStyle}>
-                  <AddNewContactModal />
+                  {this.state.isGroupSelected ? (
+                    <AddNewContactModal group={this.state.selectedGroup} />
+                  ) : (
+                    ''
+                  )}
                 </span>
               </div>
             </div>
