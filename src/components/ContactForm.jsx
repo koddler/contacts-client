@@ -14,7 +14,7 @@ class ContactForm extends PureComponent {
             type="text"
             className="form-control"
             id="name"
-            placeholder="Name"
+            placeholder={this.props.contact ? this.props.contact.name : 'Name'}
           />
         </div>
         <div className="form-group">
@@ -25,7 +25,9 @@ class ContactForm extends PureComponent {
             type="text"
             className="form-control"
             id="phone"
-            placeholder="Phone"
+            placeholder={
+              this.props.contact ? this.props.contact.phone : 'Phone'
+            }
           />
         </div>
         <div className="form-group">
@@ -36,7 +38,9 @@ class ContactForm extends PureComponent {
             type="email"
             className="form-control"
             id="email"
-            placeholder="Email"
+            placeholder={
+              this.props.contact ? this.props.contact.email : 'Email'
+            }
           />
         </div>
         <button

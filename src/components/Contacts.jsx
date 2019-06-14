@@ -5,6 +5,7 @@ import './contacts.css';
 import AddNewGroupModal from './AddNewGroupModal';
 import AddNewContactModal from './AddNewContactModal';
 import EditGroupModal from './EditGroupModal';
+import EditContactModal from './EditContactModal';
 import { fetchGroups, removeGroup } from '../redux/actions/groupsAction';
 import { removeContact } from '../redux/actions/contactsAction';
 
@@ -146,7 +147,10 @@ class Contacts extends PureComponent {
                     />
                   </span>
                   <span className="float-right">
-                    {/* <EditGroupModal group={group} /> */}
+                    <EditContactModal
+                      group={this.state.selectedGroup}
+                      contact={contact}
+                    />
                   </span>
                 </li>
               ))}
