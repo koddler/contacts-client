@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
+import './contacts.css';
 import { fetchGroups } from '../redux/actions/groupsAction';
 
 class Contacts extends PureComponent {
@@ -54,9 +55,9 @@ class Contacts extends PureComponent {
   }
 
   render() {
-    const spacingStyle = { marginTop: 10 };
-    const detailsSpacing = { marginLeft: 15 };
-    const deleteIconStyle = { marginLeft: 10 };
+    const detailsStyle = { marginLeft: 15, paddingTop: 10 };
+    const deleteIconStyle = { marginLeft: 5 };
+    const addNewButtonStyle = { marginTop: 10 };
 
     const { groups } = this.props;
     const { contacts, contactDetails } = this.state;
@@ -71,6 +72,17 @@ class Contacts extends PureComponent {
 
         <div className="row">
           <div className="col-sm">
+            <div className="row">
+              <div className="col-sm-8">
+                <h3>Groups</h3>
+              </div>
+              <div className="col-sm-4">
+                <i
+                  className="far fa-plus-square float-right"
+                  style={addNewButtonStyle}
+                />
+              </div>
+            </div>
             <ul className="list-group">
               {groups.map(group => (
                 <li
@@ -96,6 +108,17 @@ class Contacts extends PureComponent {
             </ul>
           </div>
           <div className="col-sm">
+            <div className="row">
+              <div className="col-sm-8">
+                <h3>Contacts</h3>
+              </div>
+              <div className="col-sm-4">
+                <i
+                  className="far fa-plus-square float-right"
+                  style={addNewButtonStyle}
+                />
+              </div>
+            </div>
             <ul className="list-group">
               {contacts.map(contact => (
                 <li
@@ -120,11 +143,13 @@ class Contacts extends PureComponent {
               ))}
             </ul>
           </div>
-          <div className="col-sm mx-auto border">
-            <h3 style={spacingStyle}>Contact Details</h3>
-            <p style={detailsSpacing}>{contactDetails.name}</p>
-            <p style={detailsSpacing}>{contactDetails.phone}</p>
-            <p style={detailsSpacing}>{contactDetails.email}</p>
+          <div className="col-sm mx-auto">
+            <h3>Contact Details</h3>
+            <div className="border">
+              <p style={detailsStyle}>{contactDetails.name}</p>
+              <p style={detailsStyle}>{contactDetails.phone}</p>
+              <p style={detailsStyle}>{contactDetails.email}</p>
+            </div>
           </div>
         </div>
       </div>
