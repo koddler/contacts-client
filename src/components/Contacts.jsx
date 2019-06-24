@@ -19,7 +19,9 @@ class Contacts extends PureComponent {
       contactDetails: {
         name: 'N/A',
         phone: 'N/A',
-        email: 'N/A'
+        email: 'N/A',
+        avatar:
+          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
       },
       isGroupSelected: false,
       selectedGroup: 0
@@ -47,7 +49,15 @@ class Contacts extends PureComponent {
   }
 
   setDetails(details) {
-    this.setState({ contactDetails: details });
+    let contact = {};
+    if (details.avatar !== null) {
+      contact = {
+        ...details,
+        avatar: 'http://localhost:5000/' + details.avatar
+      };
+    }
+    console.log(contact);
+    this.setState({ contactDetails: contact });
   }
 
   editGroup(group) {
@@ -72,6 +82,12 @@ class Contacts extends PureComponent {
     const detailsStyle = { marginLeft: 15, paddingTop: 10 };
     const deleteIconStyle = { marginLeft: 5 };
     const addNewButtonStyle = { marginTop: 5 };
+    const imgStyle = {
+      margin: 10,
+      borderRadius: 50,
+      width: 80,
+      float: 'right'
+    };
 
     const { groups } = this.props;
     const { contacts, contactDetails } = this.state;
@@ -159,6 +175,11 @@ class Contacts extends PureComponent {
           <div className="col-sm mx-auto">
             <h3>Contact Details</h3>
             <div className="border">
+              <img
+                style={imgStyle}
+                src={contactDetails.avatar}
+                alt="profile_pic"
+              />
               <p style={detailsStyle}>{contactDetails.name}</p>
               <p style={detailsStyle}>{contactDetails.phone}</p>
               <p style={detailsStyle}>{contactDetails.email}</p>
