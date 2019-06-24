@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import ProgressBar from './ProgressBar';
+
 const UploadFile = ({
   input: { value: omitValue, ...inputProps },
   meta: omitMeta,
@@ -21,6 +23,9 @@ class CsvForm extends PureComponent {
             id="image"
           />
         </div>
+
+        <ProgressBar />
+        <br />
         <button
           type="submit"
           className="btn btn-secondary"
