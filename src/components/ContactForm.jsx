@@ -50,7 +50,7 @@ class ContactForm extends PureComponent {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="image">Picture</label>
+          <label htmlFor="image">Avatar</label>
           <Field
             name="file"
             component={UploadFile}

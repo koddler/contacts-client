@@ -6,8 +6,12 @@ import AddNewGroupModal from './AddNewGroupModal';
 import AddNewContactModal from './AddNewContactModal';
 import EditGroupModal from './EditGroupModal';
 import EditContactModal from './EditContactModal';
+import CsvForm from './CsvForm';
 import { fetchGroups, removeGroup } from '../redux/actions/groupsAction';
-import { removeContact } from '../redux/actions/contactsAction';
+import {
+  addContactFromCsv,
+  removeContact
+} from '../redux/actions/contactsAction';
 
 class Contacts extends PureComponent {
   constructor(props) {
@@ -34,6 +38,15 @@ class Contacts extends PureComponent {
     this.editContact = this.editContact.bind(this);
     this.deleteContact = this.deleteContact.bind(this);
   }
+
+  submit = values => {
+    let val = {};
+    if (values.hasOwnProperty('file'))
+      val = { ...values, file: values.file[0] };
+    else val = { ...values };
+    console.log(val);
+    this.props.addContactFromCsv(val);
+  };
 
   componentDidMount() {
     this.props.fetchGroups();
@@ -99,6 +112,9 @@ class Contacts extends PureComponent {
             <h1 className="display-4">Contacts</h1>
           </div>
         </div>
+
+        <CsvForm onSubmit={this.submit} />
+        <hr />
 
         <div className="row">
           <div className="col-sm">
@@ -197,5 +213,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchGroups, removeGroup, removeContact }
+  { fetchGroups, removeGroup, addContactFromCsv, removeContact }
 )(Contacts);
