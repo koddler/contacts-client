@@ -1,6 +1,12 @@
 import React, { PureComponent } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+const UploadFile = ({
+  input: { value: omitValue, ...inputProps },
+  meta: omitMeta,
+  ...props
+}) => <input type="file" {...inputProps} {...props} />;
+
 class ContactForm extends PureComponent {
   render() {
     const { handleSubmit } = this.props;
@@ -42,6 +48,16 @@ class ContactForm extends PureComponent {
               this.props.contact ? this.props.contact.email : 'Email'
             }
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="image">Picture</label>
+          <Field
+            name="file"
+            component={UploadFile}
+            className="form-control"
+            id="image"
+          />
+          {/* <input name="file" type="file" className="form-control" id="image" /> */}
         </div>
         <button
           type="submit"

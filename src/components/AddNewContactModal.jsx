@@ -22,7 +22,11 @@ class AddNewContactModal extends React.Component {
   }
 
   submit = values => {
-    let val = { ...values, groupId: this.props.group };
+    let val = {};
+    if (values.hasOwnProperty('file'))
+      val = { ...values, file: values.file[0], groupId: this.props.group };
+    else val = { ...values, groupId: this.props.group };
+
     console.log(val);
     this.props.addContact(val);
   };

@@ -28,6 +28,22 @@ export const _post = (url, dispatch, type, postData) => {
     .catch(err => console.error(err));
 };
 
+// HTTP POST Form Data
+export const _postForm = (url, dispatch, type, postData) => {
+  fetch(url, {
+    method: 'POST',
+    body: postData
+  })
+    .then(response => response.json())
+    .then(data => {
+      return dispatch({
+        type: type,
+        payload: data
+      });
+    })
+    .catch(err => console.error(err));
+};
+
 // HTTP PUT
 export const _put = (url, dispatch, type, updatedData) => {
   fetch(url, {
